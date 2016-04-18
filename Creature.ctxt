@@ -2,5 +2,15 @@
 comment0.params=
 comment0.target=Creature()
 comment1.params=
-comment1.target=int\ damage()
-numComments=2
+comment1.target=int\ getHP()
+comment2.params=
+comment2.target=int\ getStrength()
+comment3.params=
+comment3.target=int\ damage()
+comment4.params=num
+comment4.target=void\ setHP(int)
+comment5.params=num
+comment5.target=void\ setStrength(int)
+comment6.params=num
+comment6.target=void\ takeWound(int)
+numComments=7
