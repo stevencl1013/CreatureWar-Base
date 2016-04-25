@@ -84,9 +84,9 @@ public class War
             }
         }
         if(index1 < size1 && index2 >= size2)
-            System.out.println("Army 1 wins!");
+            System.out.println("Army 1 wins! They still have "+(size1-index1)+" creatures left.");
         else if(index1 >= size1 && index2 < size2)
-            System.out.println("Army 2 wins!");
+            System.out.println("Army 2 wins! They still have "+(size2-index2)+" creatures left.");
         else
             System.out.println("It's a tie!");
     }
