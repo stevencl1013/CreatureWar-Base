@@ -34,11 +34,11 @@ public class War
             {
                 case 0: newCreature = new Human(rand.nextInt(26)+5,rand.nextInt(14)+5);
                 break;
-                case 1: newCreature = new Elf(rand.nextInt(30), rand.nextInt(30));
+                case 1: newCreature = new Elf(rand.nextInt(30), 1+rand.nextInt(30));
                 break;
-                case 2: newCreature = new CyberDemon(rand.nextInt(30), rand.nextInt(30));
+                case 2: newCreature = new CyberDemon(rand.nextInt(30), 1+rand.nextInt(30));
                 break;
-                case 3: newCreature = new Balrog(rand.nextInt(30), rand.nextInt(30));
+                case 3: newCreature = new Balrog(rand.nextInt(30), 1+rand.nextInt(30));
                 break;
             }
             army.add(newCreature);
@@ -48,7 +48,46 @@ public class War
     
     public void battle()
     {
-        int index1;
-        int index2;
+        int index1 = 0;
+        int index2 = 0;
+        String copy;
+        while(index1 < size1 && index2 < size2)
+        {
+            while(army1.get(index1).getHP() > 0 && army2.get(index2).getHP() > 0)
+            {
+                army1.get(index1).takeWound(army2.get(index2).damage());
+                army2.get(index2).takeWound(army1.get(index1).damage());
+            }
+            if(army1.get(index1).getHP() <= 0)
+            {
+                copy = "";
+                for(int i = 0; i < army1.get(index1).toString().length(); i++)
+                {
+                    if(army1.get(index1).toString().charAt(i) == '@')
+                        break;
+                    copy += army1.get(index1).toString().charAt(i);
+                }
+                System.out.println("Army 1's creature "+index1+", a "+copy+", died.");
+                index1++;
+            }
+            if(army2.get(index2).getHP() <= 0)
+            {
+                copy = "";
+                for(int i = 0; i < army2.get(index2).toString().length(); i++)
+                {
+                    if(army2.get(index2).toString().charAt(i) == '@')
+                        break;
+                    copy += army2.get(index2).toString().charAt(i);
+                }
+                System.out.println("Army 2's creature "+index2+", a "+copy+", died.");
+                index2++;
+            }
+        }
+        if(index1 < size1 && index2 >= size2)
+            System.out.println("Army 1 wins!");
+        else if(index1 >= size1 && index2 < size2)
+            System.out.println("Army 2 wins!");
+        else
+            System.out.println("It's a tie!");
     }
 }
